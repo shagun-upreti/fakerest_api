@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "c6142703-155b-4df0-be82-0814949547d6",
+		"name": "CoverPhotos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34179544"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos",
+					"protocol": "https",
+					"host": [
+						"fakerestapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"CoverPhotos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"random_id\", Math.floor(Math.random()*10000));\r",
+							"pm.environment.set(\"random_idBook\",Math.floor(Math.random()*10000));\r",
+							"\r",
+							"let randomUrl =`https://example.com/resource/${Math.floor(Math.random() * 1000)}`; \r",
+							"\r",
+							"pm.environment.set(\"random_url\",randomUrl);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"     pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let responseData = pm.response.json();\r",
+							"\r",
+							"if(responseData.id && responseData.idBook){\r",
+							"    pm.environment.set(\"created_id\", responseData.id);\r",
+							"    pm.environment.set(\"created-idBook\",responseData.idBook);\r",
+							"\r",
+							"}\r",
+							"\r",
+							"pm.test(\"ID and IDBook are returned\", function(){\r",
+							"    pm.expect(responseData).to.have.property(\"id\");\r",
+							"    pm.expect(responseData).to.have.property(\"idBook\");\r",
+							"});\r",
+							"\r",
+							"console.log(\"Response Data\", pm.response.json());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{random_id}}\",\r\n  \"idBook\": \"{{random_idBook}}\",\r\n  \"url\": \"{{random_url}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos",
+					"protocol": "https",
+					"host": [
+						"fakerestapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"CoverPhotos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/books/covers/{{random_idBook}}",
+					"protocol": "https",
+					"host": [
+						"fakerestapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"CoverPhotos",
+						"books",
+						"covers",
+						"{{random_idBook}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/1",
+					"protocol": "https",
+					"host": [
+						"fakerestapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"CoverPhotos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"random_id\", Math.floor(Math.random()*10000));\r",
+							"pm.environment.set(\"random_idBook\", Math.floor(Math.random()* 10000));\r",
+							"\r",
+							"let randomUrl = `https://example.com/resource/${Math.floor(Math.random() * 1000)}`;\r",
+							"pm.environment.set(\"random_url\", randomUrl);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response conatins valid ID, idBook, and URL\", function(){\r",
+							"    pm.expect(responseData).to.have.property(\"id\");\r",
+							"    pm.expect(responseData).to.have.property(\"idBook\");\r",
+							"    pm.expect(responseData).to.have.property(\"url\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"created_id\", responseData.id);\r",
+							"pm.environment.set(\"created_idBook\", responseData.idBook);\r",
+							"pm.environment.set(\"created_url\", responseData.url);\r",
+							"\r",
+							"console.log(\"Response data\", responseData);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{random_id}}\",\r\n  \"idBook\": \"{{random_idBook}}\",\r\n  \"url\": \"{{random_url}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/{{random_id}}",
+					"protocol": "https",
+					"host": [
+						"fakerestapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"CoverPhotos",
+						"{{random_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if(!pm.environment.get(\"created_id\")){\r",
+							"    pm.environment.set(\"random_id\", Math.floor(Math.random()*10000));\r",
+							"} else{\r",
+							"    pm.environment.set(\"random_id\", pm.environment.get(\"created_id\"));\r",
+							"}\r",
+							"\r",
+							"console.log(\"Deleting cover photo with ID:\", pm.environment.get(\"random_id\"));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed ReferenceError: p is not defined\r",
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body should be empty\", function(){\r",
+							"    pm.expect(pm.response.text()).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"console.log(\"Delete response\", pm.response.text());\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/{{random_id}}",
+					"protocol": "https",
+					"host": [
+						"fakerestapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"CoverPhotos",
+						"{{random_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
