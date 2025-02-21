@@ -14,9 +14,11 @@ The **FakeRestAPI** provides sample API endpoints for performing **CRUD operatio
 - 🚀 **JSON** – Data format for API requests & responses  
 
 ## 📂 Project Structure  
+```graphql
 /fakerestapi-postman-collection 
 -`Activities.postman_collection.json` # API requests for Activities 
 -`Authors.postman_collection.json` # API requests for Authors 
 -`Books.postman_collection.json` # API requests for Books 
 -`CoverPhotos.postman_collection.json` # API requests for Cover Photos 
 -`Users.postman_collection.json` # API requests for Users
+```
